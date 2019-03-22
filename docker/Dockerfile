@@ -51,6 +51,7 @@ RUN set -x \
         --add-module=/tmp/ngx_cache_purge \
     && make \
     && make install \
+    && ln -snf /etc/nginx/sbin/nginx /usr/sbin/nginx \
     && apt-get autoremove \
     && apt-get clean \
     && rm -fr /tmp/ngx_cache_purge \
@@ -65,4 +66,4 @@ EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/etc/nginx/sbin/nginx", "-g", "daemon off;"]
