@@ -52,6 +52,8 @@ RUN set -x \
     && make \
     && make install \
     && ln -snf /etc/nginx/sbin/nginx /usr/sbin/nginx \
+    && mkdir -p /var/lib/nginx/body && chown -R www-data:www-data /var/lib/nginx/body \
+    && mkdir -p /var/log/nginx && chown -R www-data:www-data /var/log/nginx \
     && apt-get autoremove \
     && apt-get clean \
     && rm -fr /tmp/ngx_cache_purge \
